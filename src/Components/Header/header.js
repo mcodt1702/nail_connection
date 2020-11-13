@@ -25,7 +25,7 @@ export default class Header extends Component {
     return (
       <div className="Header__not-logged-in">
         <div className="restLogin">
-          <Link to="/loginvenue">Promote your event</Link>{" "}
+          <Link to="/loginvenue">Nail Technicians CLick Here</Link>{" "}
         </div>
       </div>
     );
@@ -39,7 +39,7 @@ export default class Header extends Component {
             &#9776;
           </a>
         </div>
-        <Link className="logo" to="/">
+        <Link className="logo" to="/main">
           <h1>Nail Connection</h1>
         </Link>
         <div className="nav">
