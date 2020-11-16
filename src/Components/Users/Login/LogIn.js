@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Login.css";
-import context from "../../context";
-import AuthApiService from "../../Services/authApiService";
-import TokenService from "../../Services/tokenService";
-import { Button, Input } from "../../Utilities/utilities";
+import context from "../../../context";
+import AuthApiService from "../../../Services/authApiService";
+import TokenService from "../../../Services/tokenService";
+import { Button, Input } from "../../../Utilities/utilities";
 
 export default class LoginForm extends Component {
   state = { error: null };

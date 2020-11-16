@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ZipLocation from "../ZipLocation/zipLocation";
-import Context from "../../context";
+import Context from "../../../context";
 import "./mainPage.css";
 
 export default class MainPage extends Component {

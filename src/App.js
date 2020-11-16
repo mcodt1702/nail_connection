@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import LandingPage from "./Components/LandingPage/LandingPage";
+import LandingPage from "./Components/Users/LandingPage/LandingPage";
 import Config from "./config";
 import PrivateRoute from "./Utilities/privateRoute";
 import Context from "./context";
-import Header from "./Components/Header/header";
+import Header from "./Components/Users/Header/header";
 import TokenService from "./Services/tokenService";
-import MainPage from "./Components/MainPage/mainPage";
-import Providers from "./Components/Providers/providers";
-import MessageRes from "./Components/Messages/messageRes";
+import MainPage from "./Components/Users/MainPage/mainPage";
+import Providers from "./Components/Users/Providers/providers";
+import MessageRes from "./Components/Users/Messages/messageRes";
+import Venues from "./Components/Venues/Venues";
+import Login from "./Components/Users/Login/LogIn";
 
 class App extends Component {
   state = {
@@ -53,6 +55,8 @@ class App extends Component {
           <Route path={"/"} component={Header}></Route>
           <Route exact path={"/"} component={LandingPage}></Route>
           <Route exact path={"/main"} component={MainPage}></Route>
+          <Route exact path={"/loginvenue"} component={Venues}></Route>
+          <Route exact path={"/login"} component={Login}></Route>
           <PrivateRoute
             exact
             path={"/main/loc/:zip"}

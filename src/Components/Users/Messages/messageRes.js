@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Context from "../../context";
 
 export default class MessageRes extends Component {
   render() {

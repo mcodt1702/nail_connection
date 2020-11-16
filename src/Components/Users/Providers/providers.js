@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Context from "../../context";
-import Config from "../../config";
-import TokenService from "../../Services/tokenService";
-import { Button } from "../../Utilities/utilities";
+import Context from "../../../context";
+
+import { Button } from "../../../Utilities/utilities";
 export default class Providers extends Component {
   static contextType = Context;
 

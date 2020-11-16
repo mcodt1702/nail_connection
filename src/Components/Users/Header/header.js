@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
-import Context from "../../context";
-import TokenService from "../../Services/tokenService";
+import Context from "../../../context";
+import TokenService from "../../../Services/tokenService";
 
 export default class Header extends Component {
   static contextType = Context;

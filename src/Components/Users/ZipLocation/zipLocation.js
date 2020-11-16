@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./zipLocation.css";
-import { Button, Input } from "../../Utilities/utilities";
-import { Link } from "react-router-dom";
+import { Button, Input } from "../../../Utilities/utilities";
 
 export default class ZipLocation extends Component {
   findInZip = (e) => {
