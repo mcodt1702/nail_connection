@@ -11,6 +11,7 @@ import Providers from "./Components/Users/Providers/providers";
 import MessageRes from "./Components/Users/Messages/messageRes";
 import Venues from "./Components/Venues/Venues";
 import Login from "./Components/Users/Login/LogIn";
+const { API_ENDPOINT } = Config;
 
 class App extends Component {
   state = {
@@ -22,9 +23,43 @@ class App extends Component {
     messageSent: () => {
       window.location.replace("../../messageRes");
     },
+    createProvider: (e) => {
+      e.preventDefault();
+
+      let newProvider = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        phone: e.target.phone.value,
+        zip: e.target.zip.value,
+        description: e.target.description.value,
+      };
+
+      fetch(
+        `${API_ENDPOINT}/providers`,
+
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newProvider),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              "There was a problem coneectig to the server. We can't create a new Order"
+            ); // throw an error
+          }
+
+          return res.json();
+        })
+        .then((newProvider) => {
+          window.location.replace("/login");
+        });
+    },
 
     loadProviders: () => {
-      fetch(`${Config.API_ENDPOINT}/providers`, {
+      fetch(`${API_ENDPOINT}/providers`, {
         method: "get",
         headers: {
           "content-type": "application/json",
