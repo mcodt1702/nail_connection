@@ -27,8 +27,14 @@ export default class Providers extends Component {
             <li>{item.phone}</li>
             <li>{item.zip}</li>
           </ul>
-          <Button onClick={() => this.context.messageSent()}>
+
+          <Button
+            onClick={(e) => window.location.replace(`/messageRes/${item.id}`)}
+          >
             Contact this Specialist
+          </Button>
+          <Button onClick={() => window.location.replace("/main")}>
+            Search on a different Zip code.
           </Button>
         </div>
       ));

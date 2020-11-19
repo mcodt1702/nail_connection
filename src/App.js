@@ -17,12 +17,66 @@ class App extends Component {
   state = {
     user: [],
     providers: [],
+    messages: [],
+
+    startConversation: () => {
+      fetch(`${API_ENDPOINT}/messages/conversation`, {
+        method: "get",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong");
+          }
+          return res;
+        })
+        .then((res) => res.json())
+        .then((messages) => this.setState({ messages }))
+        .catch((err) => {
+          alert("There was a problem getting your conversations.", err);
+        });
+    },
+
+    sendReply: (e, id) => {
+      e.preventDefault();
+      let newMessage = {
+        providers_id: id,
+        message: e.target.messageReply.value,
+      };
+
+      fetch(`${API_ENDPOINT}/messages`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify(newMessage),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong");
+          }
+          return res;
+        })
+        .then((res) => res.json())
+        .then((messages) => this.setState({ messages }))
+        .catch((err) => {
+          alert(
+            "There was a problem connectig to the server getting providers.",
+            err
+          );
+        });
+
+      console.log(newMessage);
+    },
+
     handleLoginSuccess: (user_id) => {
       window.location.replace("./main");
     },
-    messageSent: () => {
-      window.location.replace("../../messageRes");
-    },
+
     createProvider: (e) => {
       e.preventDefault();
 
@@ -99,7 +153,7 @@ class App extends Component {
           ></PrivateRoute>
           <PrivateRoute
             exact
-            path={"/messageRes"}
+            path={"/messageRes/:id"}
             component={MessageRes}
           ></PrivateRoute>
         </main>
