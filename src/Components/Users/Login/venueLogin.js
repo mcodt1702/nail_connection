@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./Login.css";
 import context from "../../../context";
-import AuthApiService from "../../../Services/authApiService";
+import VenueAuthApiService from "../../../Services/venueAuthApiService";
 import TokenService from "../../../Services/tokenService";
 import { Button, Input } from "../../../Utilities/utilities";
 
-export default class LoginForm extends Component {
+export default class VenueLoginForm extends Component {
   state = { error: null };
 
   static contextType = context;
@@ -14,7 +14,7 @@ export default class LoginForm extends Component {
     this.setState({ error: null });
     const { email, password } = e.target;
 
-    AuthApiService.postLogin({
+    VenueAuthApiService.postLogin({
       email: email.value,
       password: password.value,
     })
@@ -29,7 +29,6 @@ export default class LoginForm extends Component {
         this.setState({ error: res.error });
       });
   };
-
   render() {
     const { error } = this.state;
     return (

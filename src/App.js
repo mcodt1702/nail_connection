@@ -11,6 +11,7 @@ import Providers from "./Components/Users/Providers/providers";
 import MessageRes from "./Components/Users/Messages/messageRes";
 import Venues from "./Components/Venues/Venues";
 import Login from "./Components/Users/Login/LogIn";
+import VenuesLandingPage from "./Components/Venues/VenuesLandingPage/venuesLandingPage";
 const { API_ENDPOINT } = Config;
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
       fetch(`${API_ENDPOINT}/messages/conversation`, {
         method: "get",
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${TokenService.getAuthToken()}`,
         },
       })
@@ -41,7 +42,6 @@ class App extends Component {
     },
 
     sendReply: (e, id) => {
-      e.preventDefault();
       let newMessage = {
         providers_id: id,
         message: e.target.messageReply.value,
@@ -51,7 +51,7 @@ class App extends Component {
         method: "post",
         headers: {
           "content-type": "application/json",
-          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+          authorization: `bearer ${TokenService.getAuthToken()}`,
         },
         body: JSON.stringify(newMessage),
       })
@@ -62,12 +62,9 @@ class App extends Component {
           return res;
         })
         .then((res) => res.json())
-        .then((messages) => this.setState({ messages }))
+
         .catch((err) => {
-          alert(
-            "There was a problem connectig to the server getting providers.",
-            err
-          );
+          alert("There was a problem connectig sendReply", err);
         });
 
       console.log(newMessage);
@@ -146,6 +143,7 @@ class App extends Component {
           <Route exact path={"/main"} component={MainPage}></Route>
           <Route exact path={"/loginvenue"} component={Venues}></Route>
           <Route exact path={"/login"} component={Login}></Route>
+          <Route exact path={"/venues"} component={VenuesLandingPage}></Route>
           <PrivateRoute
             exact
             path={"/main/loc/:zip"}

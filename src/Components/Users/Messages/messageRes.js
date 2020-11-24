@@ -10,8 +10,8 @@ export default class MessageRes extends Component {
     let { messages = [] } = this.context || [];
     let id = parseInt(this.props.match.params.id);
 
-    const conversation = messages
-      .filter((provi) => parseInt(provi.users_id) === id)
+    let conversation = messages
+      .filter((provi) => parseInt(provi.providers_id) === id)
       .map((item) => (
         <div key={item.id} className="messagesList">
           <ul>
@@ -40,6 +40,9 @@ export default class MessageRes extends Component {
           ></Input>
           <button>Send</button>
         </form>
+        <button onClick={() => window.location.replace("/main")}>
+          Get back messages
+        </button>
       </div>
     );
   }
