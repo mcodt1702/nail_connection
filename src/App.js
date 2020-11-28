@@ -9,7 +9,7 @@ import TokenService from "./Services/tokenService";
 import MainPage from "./Components/Users/MainPage/mainPage";
 import Providers from "./Components/Users/Providers/providers";
 import MessageRes from "./Components/Users/Messages/messageRes";
-import Venues from "./Components/Venues/Venues";
+import RegisterVenues from "./Components/Venues/registerVenues";
 import Login from "./Components/Users/Login/LogIn";
 import VenuesLandingPage from "./Components/Venues/VenuesLandingPage/venuesLandingPage";
 const { API_ENDPOINT } = Config;
@@ -141,7 +141,7 @@ class App extends Component {
           <Route path={"/"} component={Header}></Route>
           <Route exact path={"/"} component={LandingPage}></Route>
           <Route exact path={"/main"} component={MainPage}></Route>
-          <Route exact path={"/loginvenue"} component={Venues}></Route>
+          <Route exact path={"/loginvenue"} component={RegisterVenues}></Route>
           <Route exact path={"/login"} component={Login}></Route>
           <Route exact path={"/venues"} component={VenuesLandingPage}></Route>
           <PrivateRoute
