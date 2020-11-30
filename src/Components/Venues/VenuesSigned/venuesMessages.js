@@ -4,8 +4,9 @@ import { Button, Input } from "../../../Utilities/utilities";
 export default class MessageRes extends Component {
   static contextType = Context;
   componentDidMount() {
-    this.context.startConversationUsers();
+    this.context.startConversation();
   }
+
   render() {
     let { messages = [] } = this.context || [];
     let id = parseInt(this.props.match.params.id);
@@ -29,7 +30,7 @@ export default class MessageRes extends Component {
         {conversation}
         <form
           className="messageReply"
-          onSubmit={(e) => this.context.sendReplyUsers(e, id)}
+          onSubmit={(e) => this.context.sendReplyVenues(e, id)}
         >
           <label htmlFor="LoginForm__password">Reply</label>
           <Input

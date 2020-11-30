@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import VenueLogin from "../../Users/Login/venueLogin";
+import VenueLogin from "../../Venues/venueLogin";
 import { Link } from "react-router-dom";
 export default class LandingPage extends Component {
   render() {

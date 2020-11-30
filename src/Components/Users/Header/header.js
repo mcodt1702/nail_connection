@@ -35,7 +35,7 @@ export default class Header extends Component {
     return (
       <header className="headerstyling">
         <div className="hambu">
-          <a id="nav-toggle" href="#">
+          <a id="nav-toggle" href="/main">
             &#9776;
           </a>
         </div>

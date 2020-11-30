@@ -9,6 +9,7 @@ import TokenService from "./Services/tokenService";
 import MainPage from "./Components/Users/MainPage/mainPage";
 import Providers from "./Components/Users/Providers/providers";
 import MessageRes from "./Components/Users/Messages/messageRes";
+import MessageResVen from "./Components/Venues/VenuesSigned/venuesMessages";
 import RegisterVenues from "./Components/Venues/registerVenues";
 import Login from "./Components/Users/Login/LogIn";
 import VenuesLandingPage from "./Components/Venues/VenuesLandingPage/venuesLandingPage";
@@ -20,7 +21,7 @@ class App extends Component {
     providers: [],
     messages: [],
 
-    startConversation: () => {
+    startConversationUsers: () => {
       fetch(`${API_ENDPOINT}/messages/conversation`, {
         method: "get",
         headers: {
@@ -41,7 +42,35 @@ class App extends Component {
         });
     },
 
-    sendReply: (e, id) => {
+    sendReplyVenues: (e, id) => {
+      let newMessage = {
+        providers_id: id,
+        message: e.target.messageReply.value,
+      };
+
+      fetch(`${API_ENDPOINT}/messages`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify(newMessage),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong");
+          }
+          return res;
+        })
+        .then((res) => res.json())
+
+        .catch((err) => {
+          alert("There was a problem connectig sendReply", err);
+        });
+
+      console.log(newMessage);
+    },
+    sendReplyUsers: (e, id) => {
       let newMessage = {
         providers_id: id,
         message: e.target.messageReply.value,
@@ -72,6 +101,10 @@ class App extends Component {
 
     handleLoginSuccess: (user_id) => {
       window.location.replace("./main");
+    },
+
+    handleLoginSuccessVenues: (user_id) => {
+      window.location.replace("./messageResVen/:id");
     },
 
     createProvider: (e) => {
@@ -153,6 +186,11 @@ class App extends Component {
             exact
             path={"/messageRes/:id"}
             component={MessageRes}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path={"/messageResVen/:id"}
+            component={MessageResVen}
           ></PrivateRoute>
         </main>
       </Context.Provider>

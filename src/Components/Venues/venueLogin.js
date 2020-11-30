@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./Login.css";
-import context from "../../../context";
-import VenueAuthApiService from "../../../Services/venueAuthApiService";
-import TokenService from "../../../Services/tokenService";
-import { Button, Input } from "../../../Utilities/utilities";
+import "../Users/Login/Login.css";
+import context from "../../context";
+import VenueAuthApiService from "../../Services/venueAuthApiService";
+import TokenService from "../../Services/tokenService";
+import { Button, Input } from "../../Utilities/utilities";
 
 export default class VenueLoginForm extends Component {
   state = { error: null };
@@ -22,8 +22,8 @@ export default class VenueLoginForm extends Component {
         email.value = "";
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
-        TokenService.saveUserId(res.user_id);
-        this.context.handleLoginSuccess(res.user_id);
+        TokenService.saveUserId(res.providers_id);
+        this.context.handleLoginSuccessVenues(res.providers_id);
       })
       .catch((res) => {
         this.setState({ error: res.error });
