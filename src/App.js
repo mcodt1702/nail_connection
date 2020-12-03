@@ -43,7 +43,7 @@ class App extends Component {
     },
 
     startConversationVenues: () => {
-      fetch(`${API_ENDPOINT}/messages/conversation`, {
+      fetch(`${API_ENDPOINT}/messages/vconver`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -65,11 +65,11 @@ class App extends Component {
 
     sendReplyVenues: (e, id) => {
       let newMessage = {
-        providers_id: id,
+        users_id: id,
         message: e.target.messageReply.value,
       };
 
-      fetch(`${API_ENDPOINT}/messages`, {
+      fetch(`${API_ENDPOINT}/messages/messagesVen`, {
         method: "post",
         headers: {
           "content-type": "application/json",
