@@ -42,6 +42,27 @@ class App extends Component {
         });
     },
 
+    startConversationVenues: () => {
+      fetch(`${API_ENDPOINT}/messages/conversation`, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong");
+          }
+          return res;
+        })
+        .then((res) => res.json())
+        .then((messages) => this.setState({ messages }))
+        .catch((err) => {
+          alert("There was a problem getting your conversations.", err);
+        });
+    },
+
     sendReplyVenues: (e, id) => {
       let newMessage = {
         providers_id: id,
@@ -103,8 +124,8 @@ class App extends Component {
       window.location.replace("./main");
     },
 
-    handleLoginSuccessVenues: (user_id) => {
-      window.location.replace("./messageResVen/:id");
+    handleLoginSuccessVenues: (providers_id) => {
+      window.location.replace(`./messageResVen/:${providers_id}`);
     },
 
     createProvider: (e) => {
@@ -138,7 +159,7 @@ class App extends Component {
           return res.json();
         })
         .then((newProvider) => {
-          window.location.replace("/login");
+          window.location.replace("/venues");
         });
     },
 

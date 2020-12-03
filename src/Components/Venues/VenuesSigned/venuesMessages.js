@@ -4,7 +4,7 @@ import { Button, Input } from "../../../Utilities/utilities";
 export default class MessageRes extends Component {
   static contextType = Context;
   componentDidMount() {
-    this.context.startConversation();
+    this.context.startConversationVenues();
   }
 
   render() {
@@ -12,7 +12,7 @@ export default class MessageRes extends Component {
     let id = parseInt(this.props.match.params.id);
 
     let conversation = messages
-      .filter((provi) => parseInt(provi.providers_id) === id)
+      .filter((users) => parseInt(users.users_id) === id)
       .map((item) => (
         <div key={item.id} className="messagesList">
           <ul>
