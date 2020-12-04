@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Context from "../../../context";
+import TokenService from "../../../Services/tokenService";
 import { Button, Input } from "../../../Utilities/utilities";
 export default class MessageRes extends Component {
   static contextType = Context;
@@ -9,10 +10,12 @@ export default class MessageRes extends Component {
 
   render() {
     let { messages = [] } = this.context || [];
-    let id = parseInt(this.props.match.params.id);
+
+    let id = parseInt(TokenService.getUserId());
+    console.log(id);
 
     let conversation = messages
-      .filter((users) => parseInt(users.users_id) === id)
+      .filter((users) => parseInt(users.providers_id) === id)
       .map((item) => (
         <div key={item.id} className="messagesList">
           <ul>
