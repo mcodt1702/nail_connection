@@ -43,6 +43,7 @@ class App extends Component {
     },
 
     startConversationVenues: () => {
+      console.log("I should re render");
       fetch(`${API_ENDPOINT}/messages/vconver`, {
         method: "get",
         headers: {
@@ -64,6 +65,8 @@ class App extends Component {
     },
 
     sendReplyVenues: (e, id) => {
+      console.log("Iam alive and sending");
+      e.preventDefault();
       let newMessage = {
         users_id: id,
         message: e.target.messageReply.value,
@@ -88,10 +91,10 @@ class App extends Component {
         .catch((err) => {
           alert("There was a problem connectig sendReply", err);
         });
-
-      console.log(newMessage);
+      this.state.startConversationVenues();
     },
     sendReplyUsers: (e, id) => {
+      e.preventDefault();
       let newMessage = {
         providers_id: id,
         message: e.target.messageReply.value,
@@ -117,6 +120,7 @@ class App extends Component {
           alert("There was a problem connectig sendReply", err);
         });
 
+      this.state.startConversationUsers();
       console.log(newMessage);
     },
 

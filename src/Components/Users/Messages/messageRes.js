@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Context from "../../../context";
-import { Button, Input } from "../../../Utilities/utilities";
+import { Input } from "../../../Utilities/utilities";
 export default class MessageRes extends Component {
   static contextType = Context;
   componentDidMount() {

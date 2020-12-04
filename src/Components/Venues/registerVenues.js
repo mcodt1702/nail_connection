@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./Venues.css";
 import Context from "../../context";
-import AuthApiService from "../../Services/authApiService";
-import TokenService from "../../Services/tokenService";
+
 import { Button, Input, Required } from "../../Utilities/utilities";
 import ValidationError from "../../Utilities/validationError";
-import Login from "../Users/Login/LogIn";
 
 export default class Venues extends Component {
   static contextType = Context;
