@@ -14,7 +14,7 @@ export default class ZipLocation extends Component {
 
   render() {
     return (
-      <form onSubmit={this.findInZip}>
+      <form className="zipimput" onSubmit={this.findInZip}>
         <div className="zipLocation">
           <Input
             required

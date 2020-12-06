@@ -67,9 +67,11 @@ class App extends Component {
     sendReplyVenues: (e, id) => {
       console.log("Iam alive and sending");
       e.preventDefault();
+      let senderVenue = "venue";
       let newMessage = {
         users_id: id,
         message: e.target.messageReply.value,
+        sender: senderVenue,
       };
 
       fetch(`${API_ENDPOINT}/messages/messagesVen`, {
@@ -95,9 +97,12 @@ class App extends Component {
     },
     sendReplyUsers: (e, id) => {
       e.preventDefault();
+      let senderUser = "user";
+
       let newMessage = {
         providers_id: id,
         message: e.target.messageReply.value,
+        sender: senderUser,
       };
 
       fetch(`${API_ENDPOINT}/messages`, {
@@ -197,6 +202,7 @@ class App extends Component {
       <Context.Provider value={this.state}>
         <main className="App">
           <Route path={"/"} component={Header}></Route>
+
           <Route exact path={"/"} component={LandingPage}></Route>
           <Route exact path={"/main"} component={MainPage}></Route>
           <Route exact path={"/loginvenue"} component={RegisterVenues}></Route>

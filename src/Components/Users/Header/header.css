@@ -1,0 +1,41 @@
+.headerstyling {
+  display: flex;
+  justify-content: space-around;
+  background-color: blueviolet;
+  height: 20vh;
+  align-items: center;
+  font-size: medium;
+
+  border-radius: 23%;
+}
+
+main {
+  text-align: center;
+}
+
+.hambu {
+  display: none;
+}
+
+.headerstyling a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  background-image: url("../../../images/bg.jpg");
+}
+
+body img {
+  opacity: 0.8;
+}
+
+body ul {
+  list-style-type: none;
+}
+
+.messageReply {
+  width: 70vh;
+  margin-left: auto;
+  margin-right: auto;
+}
