@@ -97,7 +97,7 @@ class App extends Component {
     },
     sendReplyUsers: (e, id) => {
       e.preventDefault();
-      let senderUser = "user";
+      let senderUser = "use";
 
       let newMessage = {
         providers_id: id,
