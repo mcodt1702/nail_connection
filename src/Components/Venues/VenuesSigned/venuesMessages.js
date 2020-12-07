@@ -17,13 +17,27 @@ export default class MessageRes extends Component {
     let conversation = messages
       .filter((users) => parseInt(users.providers_id) === id)
       .map((item) => (
-        <div key={item.id} className="messagesList">
+        <div key={item.id} className={`mes-${item.sender}`}>
           <ul>
             <li>
               <h2>{item.message}</h2>
+              <p>user id = {item.users_id}</p>
               {new Date(item.message_date).toLocaleString("en-US")}
             </li>
           </ul>
+          <form
+            className="messageReply"
+            onSubmit={(e) => this.context.sendReplyVenues(e, item.users_id)}
+          >
+            <label htmlFor="LoginForm__password">Reply</label>
+            <Input
+              required
+              name="messageReply"
+              type="text"
+              id="forMessageReply"
+            ></Input>
+            <button>Send</button>
+          </form>
         </div>
       ));
 
@@ -31,19 +45,7 @@ export default class MessageRes extends Component {
       <div>
         <h2>Please send your message</h2>
         {conversation}
-        <form
-          className="messageReply"
-          onSubmit={(e) => this.context.sendReplyVenues(e, id)}
-        >
-          <label htmlFor="LoginForm__password">Reply</label>
-          <Input
-            required
-            name="messageReply"
-            type="text"
-            id="forMessageReply"
-          ></Input>
-          <button>Send</button>
-        </form>
+
         <button onClick={() => window.location.replace("/main")}>
           Get back messages
         </button>

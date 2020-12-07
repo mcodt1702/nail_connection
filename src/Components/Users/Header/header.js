@@ -8,6 +8,7 @@ export default class Header extends Component {
   static contextType = Context;
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+    TokenService.clearUserID();
     this.props.history.push("/");
   };
 
@@ -25,7 +26,7 @@ export default class Header extends Component {
     return (
       <div className="Header__not-logged-in">
         <div className="restLogin">
-          <Link to="/venues">Nail Technicians Click Here</Link>{" "}
+          <Link to="/venues">Nail Technicians Click Here</Link>
         </div>
       </div>
     );

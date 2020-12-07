@@ -97,7 +97,7 @@ class App extends Component {
     },
     sendReplyUsers: (e, id) => {
       e.preventDefault();
-      let senderUser = "use";
+      let senderUser = "user";
 
       let newMessage = {
         providers_id: id,
@@ -204,7 +204,11 @@ class App extends Component {
           <Route path={"/"} component={Header}></Route>
 
           <Route exact path={"/"} component={LandingPage}></Route>
-          <Route exact path={"/main"} component={MainPage}></Route>
+          <PrivateRoute
+            exact
+            path={"/main"}
+            component={MainPage}
+          ></PrivateRoute>
           <Route exact path={"/loginvenue"} component={RegisterVenues}></Route>
           <Route exact path={"/login"} component={Login}></Route>
           <Route exact path={"/venues"} component={VenuesLandingPage}></Route>

@@ -15,6 +15,10 @@ const TokenService = {
   getUserId() {
     return window.localStorage.getItem("currentuser");
   },
+
+  clearUserID() {
+    window.localStorage.removeItem("currentuser");
+  },
   clearAuthToken() {
     window.localStorage.removeItem(config.TOKEN_KEY);
   },
