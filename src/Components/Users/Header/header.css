@@ -51,6 +51,14 @@ body ul {
   margin-right: auto;
 }
 
-.mes-user {
+.mes-venue {
   background-color: green;
+  margin-right: auto;
+  width: 40vh;
+}
+
+.mes-user {
+  background-color: lightblue;
+  margin-left: auto;
+  width: 40vh;
 }

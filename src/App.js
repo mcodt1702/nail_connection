@@ -97,12 +97,11 @@ class App extends Component {
     },
     sendReplyUsers: (e, id) => {
       e.preventDefault();
-      let senderUser = "user";
 
       let newMessage = {
         providers_id: id,
         message: e.target.messageReply.value,
-        sender: senderUser,
+        sender: "User",
       };
 
       fetch(`${API_ENDPOINT}/messages`, {

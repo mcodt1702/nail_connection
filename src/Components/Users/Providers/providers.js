@@ -39,10 +39,18 @@ export default class Providers extends Component {
         </div>
       ));
 
+    const notInArea =
+      providersList.length === 0 ? (
+        <h2>There are no technitians in that zip code</h2>
+      ) : (
+        ""
+      );
+
     return (
       <section id="three">
         <h2> List Of Nail specialist in your zip code</h2>
         {providersList}
+        {notInArea}
       </section>
     );
   }
