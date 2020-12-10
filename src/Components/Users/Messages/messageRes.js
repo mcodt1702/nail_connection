@@ -1,11 +1,77 @@
 import React, { Component } from "react";
 import Context from "../../../context";
-import { Input } from "../../../Utilities/utilities";
+import { Input, ValidationError } from "../../../Utilities/utilities";
+import Config from "../../../config";
+
+import TokenService from "../../../Services/tokenService";
+const { API_ENDPOINT } = Config;
+
 export default class MessageRes extends Component {
   static contextType = Context;
+  constructor() {
+    super();
+
+    this.state = {
+      messageReply: {
+        value: " ",
+        touched: false,
+      },
+    };
+  }
+  update() {
+    this.setState({ messageReply: { value: "", touched: false } });
+    this.context.startConversationUsers();
+    console.log("im updating");
+  }
+  sendReplyUsers(e, id) {
+    console.log("Iam alive and sending");
+    e.preventDefault();
+
+    let newMessage = {
+      providers_id: id,
+      message: e.target.messageReply.value,
+      sender: "user",
+    };
+    console.log(newMessage);
+    fetch(`${API_ENDPOINT}/messages`, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(newMessage),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong");
+        }
+        return res;
+      })
+      .then((res) => res.json())
+
+      .catch((err) => {
+        alert("There was a problem connectig sendReply", err);
+      });
+    this.update();
+    console.log(newMessage);
+  }
+  messageUpdate(messageReply) {
+    this.setState({ messageReply: { value: messageReply, touched: true } });
+  }
+
+  validateMessage() {
+    const name = this.state.messageReply.value.trim();
+    if (name.length === 0) {
+      return "Message content is required";
+    } else if (name.length < 2) {
+      return "You need at least 2 characters in your message";
+    }
+  }
+
   componentDidMount() {
     this.context.startConversationUsers();
   }
+
   render() {
     let { messages = [] } = this.context || [];
     let id = parseInt(this.props.match.params.id);
@@ -23,21 +89,16 @@ export default class MessageRes extends Component {
           </ul>
         </div>
       ));
-    const notInArea =
-      conversation.length === 0 ? (
-        <h2>There are no technitians in that zip code</h2>
-      ) : (
-        ""
-      );
 
     return (
       <div>
-        <h2>Please send your message</h2>
+        <h2>Please send your message to this Nail Technician</h2>
         {conversation}
-        {notInArea}
+
         <form
+          id="myForm"
           className="messageReply"
-          onSubmit={(e) => this.context.sendReplyUsers(e, id)}
+          onSubmit={(e) => this.sendReplyUsers(e, id)}
         >
           <label htmlFor="LoginForm__password">Reply</label>
           <Input
@@ -45,7 +106,12 @@ export default class MessageRes extends Component {
             name="messageReply"
             type="text"
             id="forMessageReply"
-          ></Input>
+            value={this.state.messageReply.value}
+            onChange={(e) => this.messageUpdate(e.target.value)}
+          />{" "}
+          {this.state.messageReply.touched && (
+            <ValidationError message={this.validateMessage()} />
+          )}
           <button>Send</button>
         </form>
         <button onClick={() => window.location.replace("/main")}>

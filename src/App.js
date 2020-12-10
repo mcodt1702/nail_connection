@@ -20,6 +20,7 @@ class App extends Component {
     user: [],
     providers: [],
     messages: [],
+    messageReply: [],
 
     startConversationUsers: () => {
       fetch(`${API_ENDPOINT}/messages/conversation`, {
@@ -91,41 +92,9 @@ class App extends Component {
         .then((res) => res.json())
 
         .catch((err) => {
-          alert("There was a problem connectig sendReply", err);
+          alert("There was a problem connectig sendReply venues", err);
         });
       this.state.startConversationVenues();
-    },
-    sendReplyUsers: (e, id) => {
-      e.preventDefault();
-
-      let newMessage = {
-        providers_id: id,
-        message: e.target.messageReply.value,
-        sender: "User",
-      };
-
-      fetch(`${API_ENDPOINT}/messages`, {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-        body: JSON.stringify(newMessage),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Something went wrong");
-          }
-          return res;
-        })
-        .then((res) => res.json())
-
-        .catch((err) => {
-          alert("There was a problem connectig sendReply", err);
-        });
-
-      this.state.startConversationUsers();
-      console.log(newMessage);
     },
 
     handleLoginSuccess: (user_id) => {

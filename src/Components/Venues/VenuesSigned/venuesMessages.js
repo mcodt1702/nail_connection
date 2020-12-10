@@ -6,6 +6,8 @@ export default class MessageRes extends Component {
   static contextType = Context;
   componentDidMount() {
     this.context.startConversationVenues();
+
+    document.getElementById("messageReply").reset();
   }
 
   render() {
@@ -13,7 +15,9 @@ export default class MessageRes extends Component {
 
     let id = parseInt(TokenService.getUserId());
     console.log(id);
+    let usersId = messages.filter((users) => users.users_id);
 
+    console.log(usersId);
     let conversation = messages
       .filter((users) => parseInt(users.providers_id) === id)
       .map((item) => (
@@ -25,28 +29,31 @@ export default class MessageRes extends Component {
               {new Date(item.message_date).toLocaleString("en-US")}
             </li>
           </ul>
-          <form
-            className="messageReply"
-            onSubmit={(e) => this.context.sendReplyVenues(e, item.users_id)}
-          >
-            <label htmlFor="LoginForm__password">Reply</label>
-            <Input
-              required
-              name="messageReply"
-              type="text"
-              id="forMessageReply"
-            ></Input>
-            <button>Send</button>
-          </form>
         </div>
       ));
-
+    const noMessages =
+      conversation.length === 0 ? <p>You have no messages at this time</p> : "";
     return (
       <div>
-        <h2>Please send your message</h2>
+        <h2>Welcome Nail Technicians, you have the followin messages:</h2>
         {conversation}
+        {noMessages}
+        <form
+          id="messageReply"
+          className="messageReply"
+          onSubmit={(e) => this.context.sendReplyVenues(e, usersId[0].users_id)}
+        >
+          <label htmlFor="LoginForm__password">Reply</label>
+          <Input
+            required
+            name="messageReply"
+            type="text"
+            id="forMessageReply"
+          ></Input>
+          <button>Send</button>
+        </form>
 
-        <button onClick={() => window.location.replace("/main")}>
+        <button onClick={() => window.location.replace("/messageResVen/:id")}>
           Get back messages
         </button>
       </div>

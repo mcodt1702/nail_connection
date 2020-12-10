@@ -3,6 +3,7 @@ import Login from "../Login/LogIn";
 import { Link } from "react-router-dom";
 
 import "./LandingPage.css";
+import { Button } from "../../../Utilities/utilities";
 export default class LandingPage extends Component {
   render() {
     return (
@@ -16,9 +17,11 @@ export default class LandingPage extends Component {
           <h2>I have an account</h2>
           email: test@yahoo.com <br></br> password: P@assword!
           <Login></Login>
-          <Link to="/signUp">
-            <h2>SignUp</h2>
-          </Link>
+          <Button>
+            <Link to="/signUp">
+              <h2>Sign Up</h2>
+            </Link>
+          </Button>
         </div>
       </div>
     );

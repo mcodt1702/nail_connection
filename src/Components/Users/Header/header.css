@@ -22,9 +22,9 @@ main {
   color: white;
 }
 
-.landing {
+/* .landing {
   background-image: url("../../../images/bg.jpg");
-}
+} */
 
 .salutation2 {
   background-color: black;
@@ -55,10 +55,31 @@ body ul {
   background-color: green;
   margin-right: auto;
   width: 40vh;
+  border-radius: 5px;
 }
 
 .mes-user {
   background-color: lightblue;
   margin-left: auto;
   width: 40vh;
+  border-radius: 5px;
+}
+
+.messageReply {
+  width: 40vh;
+}
+
+.LoginPage {
+  width: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.salutation a {
+  text-decoration: none;
+}
+
+.salutation button {
+  margin-bottom: 3vh;
+  margin-top: 3vh;
 }

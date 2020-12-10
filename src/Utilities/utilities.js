@@ -36,3 +36,11 @@ export function Section({ className, list, ...props }) {
     .join(" ");
   return <section className={classes} {...props} />;
 }
+
+export function ValidationError(props) {
+  if (props.message) {
+    return <div className="errorMessage">{props.message}</div>;
+  }
+
+  return <> </>;
+}
