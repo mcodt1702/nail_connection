@@ -12,6 +12,7 @@ import MessageRes from "./Components/Users/Messages/messageRes";
 import MessageResVen from "./Components/Venues/VenuesSigned/venuesMessages";
 import RegisterVenues from "./Components/Venues/registerVenues";
 import Login from "./Components/Users/Login/LogIn";
+import Users from "./Components/Users/SignUp/registerUser";
 import VenuesLandingPage from "./Components/Venues/VenuesLandingPage/venuesLandingPage";
 const { API_ENDPOINT } = Config;
 
@@ -63,38 +64,6 @@ class App extends Component {
         .catch((err) => {
           alert("There was a problem getting your conversations.", err);
         });
-    },
-
-    sendReplyVenues: (e, id) => {
-      console.log("Iam alive and sending");
-      e.preventDefault();
-      let senderVenue = "venue";
-      let newMessage = {
-        users_id: id,
-        message: e.target.messageReply.value,
-        sender: senderVenue,
-      };
-
-      fetch(`${API_ENDPOINT}/messages/messagesVen`, {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-        body: JSON.stringify(newMessage),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Something went wrong");
-          }
-          return res;
-        })
-        .then((res) => res.json())
-
-        .catch((err) => {
-          alert("There was a problem connectig sendReply venues", err);
-        });
-      this.state.startConversationVenues();
     },
 
     handleLoginSuccess: (user_id) => {
@@ -163,6 +132,37 @@ class App extends Component {
           );
         });
     },
+
+    createUser: (e) => {
+      e.preventDefault();
+
+      let newUser = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      };
+      fetch(
+        `${API_ENDPOINT}/users`,
+
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newUser),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              "There was a problem coneectig to the server. We can't create a new Order"
+            ); // throw an error
+          }
+
+          return res.json();
+        })
+        .then((newUser) => {
+          window.location.replace("/main");
+        });
+    },
   };
 
   render() {
@@ -180,6 +180,7 @@ class App extends Component {
           <Route exact path={"/loginvenue"} component={RegisterVenues}></Route>
           <Route exact path={"/login"} component={Login}></Route>
           <Route exact path={"/venues"} component={VenuesLandingPage}></Route>
+          <Route exact path={"/users"} component={Users}></Route>
           <PrivateRoute
             exact
             path={"/main/loc/:zip"}

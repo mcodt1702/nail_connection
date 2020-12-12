@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import "./Venues.css";
-import Context from "../../context";
 
-import { Button, Input, Required } from "../../Utilities/utilities";
-import ValidationError from "../../Utilities/validationError";
+import Context from "../../../context";
+import { Button, Input, Required } from "../../../Utilities/utilities";
+import ValidationError from "../../../Utilities/validationError";
 
-export default class Venues extends Component {
+export default class Users extends Component {
   static contextType = Context;
 
   constructor() {
@@ -17,13 +16,8 @@ export default class Venues extends Component {
       email: { value: "", touched: false },
 
       password: { value: "", touched: false },
-
-      phone: { value: "", touched: false },
-
-      zip: { value: "", touched: false },
     };
   }
-
   nameUpdate(name) {
     this.setState({ name: { value: name, touched: true } });
   }
@@ -35,6 +29,7 @@ export default class Venues extends Component {
       return "You need at least 3 characters";
     }
   }
+
   emailUpdate(email) {
     this.setState({ email: { value: email, touched: true } });
   }
@@ -62,45 +57,14 @@ export default class Venues extends Component {
     return "Use a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter!";
   }
 
-  phoneUpdate(phone) {
-    this.setState({ phone: { value: phone, touched: true } });
-  }
-
-  validatePhone() {
-    const phone = this.state.phone.value.trim();
-    if (phone.length === 0) {
-      return "Phone number is required";
-    } else if (
-      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone)
-    ) {
-      return true;
-    }
-    return "Please use a 7 digit US phone format eg 555-543-1234  ";
-  }
-
-  zipUpdate(zip) {
-    this.setState({ zip: { value: zip, touched: true } });
-  }
-  validateZip() {
-    const zip = this.state.zip.value.trim();
-    if (zip.length === 0) {
-      return "Zip Code is required";
-    } else if (/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)) {
-      return true;
-    } else if (zip.length > 5) {
-      return "Zip Code is too long";
-    }
-    return "Please usa a standard 5 digit Zip code";
-  }
-
   render() {
     return (
       <div>
-        <h1>Please register to have your business promoted in our app.</h1>
-        <form onSubmit={(e) => this.context.createProvider(e)} id="userform">
+        <h1>Please register to find a nail Technician in your zip code</h1>
+        <form onSubmit={(e) => this.context.createUser(e)} id="userform">
           <div className="name">
-            <label htmlFor="RegistrationForm__full_name">
-              Your name
+            <label htmlFor="RegistrationForm_name">
+              Your Name
               <Required />
             </label>
             <Input
@@ -115,7 +79,6 @@ export default class Venues extends Component {
               <ValidationError message={this.validateName()} />
             )}
           </div>
-
           <div className="email">
             <label htmlFor="RegistrationForm__email">
               Email <Required />
@@ -148,43 +111,6 @@ export default class Venues extends Component {
             {this.state.password.touched && (
               <ValidationError message={this.validatePassword()} />
             )}
-          </div>
-
-          <div className="zip">
-            <label htmlFor="RegistrationForm__zip">Zip</label>
-            <Input
-              name="zip"
-              type="text"
-              value={this.state.zip.value}
-              onChange={(e) => this.zipUpdate(e.target.value)}
-              required
-              id="RegistrationForm__zip"
-            ></Input>
-            {this.state.zip.touched && (
-              <ValidationError message={this.validateZip()} />
-            )}
-          </div>
-          <div className="phone">
-            <label htmlFor="RegistrationForm__phone">Phone</label>
-            <Input
-              name="phone"
-              type="text"
-              placeholder="555-543-1234"
-              value={this.state.phone.value}
-              onChange={(e) => this.phoneUpdate(e.target.value)}
-              required
-            ></Input>
-            {this.state.phone.touched && (
-              <ValidationError message={this.validatePhone()} />
-            )}
-          </div>
-          <div className="description">
-            <label htmlFor="RegistrationForm__description">Description</label>
-            <Input
-              name="description"
-              type="text"
-              placeholder="Please Give a Description of your Services"
-            ></Input>
           </div>
 
           <Button type="submit" id="submit">

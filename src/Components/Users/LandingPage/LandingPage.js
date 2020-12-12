@@ -18,7 +18,7 @@ export default class LandingPage extends Component {
           email: test@yahoo.com <br></br> password: P@assword!
           <Login></Login>
           <Button>
-            <Link to="/signUp">
+            <Link to="/users">
               <h2>Sign Up</h2>
             </Link>
           </Button>
