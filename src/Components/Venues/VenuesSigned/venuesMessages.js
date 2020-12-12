@@ -83,6 +83,19 @@ export default class MessageRes extends Component {
     let usersId = messages.filter((users) => users.users_id);
 
     console.log(usersId);
+
+    let messagesList =
+      // I want to list each message user_id
+      messages
+        .filter((outcome) => parseInt(outcome.providers_id) === id)
+        .map((eachConversation) => (
+          <div key={eachConversation.id}>
+            <ul>
+              <li>{eachConversation.id}</li>
+              <li>{eachConversation.users_id}</li>
+            </ul>
+          </div>
+        ));
     let conversation = messages
       .filter((users) => parseInt(users.providers_id) === id)
       .map((item) => (
@@ -101,7 +114,8 @@ export default class MessageRes extends Component {
     return (
       <div>
         <h2>Welcome Nail Technicians, you have the followin messages:</h2>
-        {conversation}
+        {messagesList}
+
         {noMessages}
         <form
           id="messageReply"
