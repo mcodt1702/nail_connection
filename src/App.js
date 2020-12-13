@@ -8,12 +8,13 @@ import Header from "./Components/Users/Header/header";
 import TokenService from "./Services/tokenService";
 import MainPage from "./Components/Users/MainPage/mainPage";
 import Providers from "./Components/Users/Providers/providers";
-import MessageRes from "./Components/Users/Messages/messageRes";
+import MessageResUser from "./Components/Users/Messages/messageRes";
 import MessageResVen from "./Components/Venues/VenuesSigned/venuesMessages";
 import RegisterVenues from "./Components/Venues/registerVenues";
 import Login from "./Components/Users/Login/LogIn";
 import Users from "./Components/Users/SignUp/registerUser";
 import VenuesLandingPage from "./Components/Venues/VenuesLandingPage/venuesLandingPage";
+import WelcomeProviders from "./Components/Venues/WelcomeProviders/welcomeProviders";
 const { API_ENDPOINT } = Config;
 
 class App extends Component {
@@ -71,7 +72,7 @@ class App extends Component {
     },
 
     handleLoginSuccessVenues: (providers_id) => {
-      window.location.replace(`./messageResVen/:${providers_id}`);
+      window.location.replace(`./messageRes/:${providers_id}`);
     },
 
     createProvider: (e) => {
@@ -189,7 +190,12 @@ class App extends Component {
           <PrivateRoute
             exact
             path={"/messageRes/:id"}
-            component={MessageRes}
+            component={WelcomeProviders}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path={"/messages/:id"}
+            component={MessageResUser}
           ></PrivateRoute>
           <PrivateRoute
             exact

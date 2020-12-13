@@ -29,7 +29,7 @@ export default class Providers extends Component {
           </ul>
 
           <Button
-            onClick={(e) => window.location.replace(`/messageRes/${item.id}`)}
+            onClick={(e) => window.location.replace(`/messages/${item.id}`)}
           >
             Contact this Specialist
           </Button>

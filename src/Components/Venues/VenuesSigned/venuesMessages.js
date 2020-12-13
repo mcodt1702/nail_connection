@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Context from "../../../context";
 import TokenService from "../../../Services/tokenService";
-import { Input, ValidationError } from "../../../Utilities/utilities";
+import { Input, ValidationError, Button } from "../../../Utilities/utilities";
 import Config from "../../../config";
+import { Link } from "react-router-dom";
 
 const { API_ENDPOINT } = Config;
 
@@ -77,27 +78,17 @@ export default class MessageRes extends Component {
 
   render() {
     let { messages = [] } = this.context || [];
-
+    let usersList = [];
     let id = parseInt(TokenService.getUserId());
     console.log(id);
-    let usersId = messages.filter((users) => users.users_id);
-
+    let usersId = parseInt(this.props.match.params.id);
     console.log(usersId);
 
-    let messagesList =
-      // I want to list each message user_id
-      messages
-        .filter((outcome) => parseInt(outcome.providers_id) === id)
-        .map((eachConversation) => (
-          <div key={eachConversation.id}>
-            <ul>
-              <li>{eachConversation.id}</li>
-              <li>{eachConversation.users_id}</li>
-            </ul>
-          </div>
-        ));
     let conversation = messages
-      .filter((users) => parseInt(users.providers_id) === id)
+      .filter(
+        (users) =>
+          parseInt(users.providers_id) === id && users.users_id === usersId
+      )
       .map((item) => (
         <div key={item.id} className={`mes-${item.sender}`}>
           <ul>
@@ -114,13 +105,13 @@ export default class MessageRes extends Component {
     return (
       <div>
         <h2>Welcome Nail Technicians, you have the followin messages:</h2>
-        {messagesList}
 
         {noMessages}
+        {conversation}
         <form
           id="messageReply"
           className="messageReply"
-          onSubmit={(e) => this.sendReplyVenues(e, usersId[0].users_id)}
+          onSubmit={(e) => this.sendReplyVenues(e, usersId)}
         >
           <label htmlFor="LoginForm__password">Reply</label>
           <Input
@@ -137,7 +128,7 @@ export default class MessageRes extends Component {
           <button>Send</button>
         </form>
 
-        <button onClick={() => window.location.replace("/messageResVen/:id")}>
+        <button onClick={() => window.location.replace("/messageRes/:id")}>
           Get back messages
         </button>
       </div>
