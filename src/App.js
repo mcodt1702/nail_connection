@@ -46,7 +46,6 @@ class App extends Component {
     },
 
     startConversationVenues: () => {
-      console.log("I should re render");
       fetch(`${API_ENDPOINT}/messages/vconver`, {
         method: "get",
         headers: {

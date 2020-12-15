@@ -19,6 +19,7 @@ export default class MessageRes extends Component {
     };
   }
   update() {
+    this.context.startConversationUsers();
     this.setState({ messageReply: { value: "", touched: false } });
     this.context.startConversationUsers();
     console.log("im updating");
@@ -115,7 +116,7 @@ export default class MessageRes extends Component {
           <button>Send</button>
         </form>
         <button onClick={() => window.location.replace("/main")}>
-          Get back messages
+          Get back search by zip code
         </button>
       </div>
     );
