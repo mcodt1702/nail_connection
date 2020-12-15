@@ -44,7 +44,7 @@ export default class WelcomeProviders extends Component {
     return (
       <div>
         <h2>Welcome Nail Technicians, you have the followin messages:</h2>
-
+        {noMessages}
         {messageListMap}
       </div>
     );
