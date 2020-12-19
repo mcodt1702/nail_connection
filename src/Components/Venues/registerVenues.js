@@ -97,7 +97,11 @@ export default class Venues extends Component {
     return (
       <div>
         <h1>Please register to have your business promoted in our app.</h1>
-        <form onSubmit={(e) => this.context.createProvider(e)} id="userform">
+        <form
+          className="LoginPage"
+          onSubmit={(e) => this.context.createProvider(e)}
+          id="userform"
+        >
           <div className="name">
             <label htmlFor="RegistrationForm__full_name">
               Your name

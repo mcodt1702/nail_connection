@@ -61,7 +61,11 @@ export default class Users extends Component {
     return (
       <div>
         <h1>Please register to find a nail Technician in your zip code</h1>
-        <form onSubmit={(e) => this.context.createUser(e)} id="userform">
+        <form
+          className="LoginPage"
+          onSubmit={(e) => this.context.createUser(e)}
+          id="userform"
+        >
           <div className="name">
             <label htmlFor="RegistrationForm_name">
               Your Name

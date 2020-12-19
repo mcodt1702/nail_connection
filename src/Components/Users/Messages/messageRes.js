@@ -84,7 +84,7 @@ export default class MessageRes extends Component {
           <ul>
             <li>
               <h2>{item.message}</h2>
-              <p>{item.sender} I have undefined</p>
+
               {new Date(item.message_date).toLocaleString("en-US")}
             </li>
           </ul>

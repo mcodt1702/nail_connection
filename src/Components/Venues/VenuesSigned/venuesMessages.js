@@ -94,7 +94,6 @@ export default class MessageRes extends Component {
           <ul>
             <li>
               <h2>{item.message}</h2>
-              <p>user id = {item.users_id}</p>
               {new Date(item.message_date).toLocaleString("en-US")}
             </li>
           </ul>
