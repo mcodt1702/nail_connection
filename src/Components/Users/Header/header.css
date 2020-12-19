@@ -1,7 +1,7 @@
 .headerstyling {
   display: flex;
   justify-content: space-around;
-  background-color: blueviolet;
+  background-color: #8c5f66;
   height: 20vh;
   align-items: center;
   font-size: medium;
@@ -82,4 +82,8 @@ body ul {
 .salutation button {
   margin-bottom: 3vh;
   margin-top: 3vh;
+}
+
+body {
+  background-color: #eed3df;
 }

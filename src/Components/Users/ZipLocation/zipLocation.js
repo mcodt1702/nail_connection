@@ -14,6 +14,7 @@ export default class ZipLocation extends Component {
     return (
       <form className="zipimput" onSubmit={this.findInZip}>
         <div className="zipLocation">
+          <p>You can lookup in 11106 or register a new Nail Technician</p>
           <Input
             required
             role="getting zip code"
