@@ -13,8 +13,6 @@ export default class Providers extends Component {
     let { providers = [] } = this.context || [];
     let zip = parseInt(this.props.match.params.zip);
 
-    console.log(zip);
-
     const providersList = providers
       .filter((provi) => parseInt(provi.zip) === zip)
       .map((item) => (

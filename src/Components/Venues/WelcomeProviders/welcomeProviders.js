@@ -15,10 +15,6 @@ export default class WelcomeProviders extends Component {
     let { messages = [] } = this.context || [];
     let usersList = [];
     let id = parseInt(TokenService.getUserId());
-    console.log(id);
-    let usersId = messages.filter((users) => users.users_id);
-
-    console.log(usersId);
 
     let messageList = messages
       .filter((outcome) => parseInt(outcome.providers_id) === id)
@@ -36,8 +32,6 @@ export default class WelcomeProviders extends Component {
         </Link>
       </div>
     ));
-
-    console.log(usersList);
 
     const noMessages =
       usersList.length === 0 ? <p>You have no messages at this time</p> : "";

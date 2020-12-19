@@ -7,8 +7,6 @@ export default class ZipLocation extends Component {
     e.preventDefault();
     const { zip } = e.target;
 
-    console.log(zip.value);
-
     window.location.replace(`/main/loc/${zip.value}`);
   };
 

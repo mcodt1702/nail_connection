@@ -13,7 +13,7 @@ export default class VenueLoginForm extends Component {
     e.preventDefault();
     this.setState({ error: null });
     const { email, password } = e.target;
-    console.log(email.value);
+
     VenueAuthApiService.postLogin({
       email: email.value,
       password: password.value,

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Context from "../../../context";
 import TokenService from "../../../Services/tokenService";
-import { Input, ValidationError, Button } from "../../../Utilities/utilities";
+import { Input, ValidationError } from "../../../Utilities/utilities";
 import Config from "../../../config";
-import { Link } from "react-router-dom";
 
 const { API_ENDPOINT } = Config;
 
@@ -23,11 +22,9 @@ export default class MessageRes extends Component {
   update() {
     this.setState({ messageReply: { value: "", touched: false } });
     this.context.startConversationVenues();
-    console.log("im updating venue messages");
   }
 
   sendReplyVenues(e, id) {
-    console.log("Iam alive and sending");
     e.preventDefault();
 
     let newMessage = {
@@ -35,7 +32,7 @@ export default class MessageRes extends Component {
       message: e.target.messageReply.value,
       sender: "venue",
     };
-    console.log(newMessage);
+
     fetch(`${API_ENDPOINT}/messages/messagesVen`, {
       method: "post",
       headers: {
@@ -56,7 +53,6 @@ export default class MessageRes extends Component {
         alert("There was a problem connectig sendReply venues", err);
       });
     this.update();
-    console.log(newMessage);
   }
 
   messageUpdate(messageReply) {
@@ -78,11 +74,10 @@ export default class MessageRes extends Component {
 
   render() {
     let { messages = [] } = this.context || [];
-    let usersList = [];
+
     let id = parseInt(TokenService.getUserId());
-    console.log(id);
+
     let usersId = parseInt(this.props.match.params.id);
-    console.log(usersId);
 
     let conversation = messages
       .filter(

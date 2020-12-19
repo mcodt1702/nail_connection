@@ -22,10 +22,8 @@ export default class MessageRes extends Component {
     this.context.startConversationUsers();
     this.setState({ messageReply: { value: "", touched: false } });
     this.context.startConversationUsers();
-    console.log("im updating");
   }
   sendReplyUsers(e, id) {
-    console.log("Iam alive and sending");
     e.preventDefault();
 
     let newMessage = {
@@ -33,7 +31,7 @@ export default class MessageRes extends Component {
       message: e.target.messageReply.value,
       sender: "user",
     };
-    console.log(newMessage);
+
     fetch(`${API_ENDPOINT}/messages`, {
       method: "post",
       headers: {
@@ -54,7 +52,6 @@ export default class MessageRes extends Component {
         alert("There was a problem connectig sendReply", err);
       });
     this.update();
-    console.log(newMessage);
   }
   messageUpdate(messageReply) {
     this.setState({ messageReply: { value: messageReply, touched: true } });
