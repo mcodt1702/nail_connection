@@ -52,17 +52,19 @@ body ul {
 }
 
 .mes-venue {
-  background-color: green;
+  background-color: #d8e2dc;
   margin-right: auto;
   width: 40vh;
   border-radius: 5px;
+  border-style: solid;
 }
 
 .mes-user {
-  background-color: lightblue;
+  background-color: #ffe5d9;
   margin-left: auto;
   width: 40vh;
   border-radius: 5px;
+  border-style: solid;
 }
 
 .messageReply {
